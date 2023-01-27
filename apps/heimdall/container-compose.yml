@@ -10,6 +10,6 @@ services:
     volumes:
       - /var/mnt/shared/apps/docker/heimdall/config:/config
     ports:
-      - 443:443
-      - 80:80
+      - 3443:443
+      - 3000:80
     restart: 'unless-stopped'
