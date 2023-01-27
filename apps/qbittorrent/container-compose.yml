@@ -1,0 +1,20 @@
+version: '3.5'
+services:
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=007
+      - WEBUI_PORT=8085
+      - TZ=Europe/Zurich
+    volumes:
+      - /var/home/core/apps/files/downloads:/downloads:z
+      - /var/home/core/apps/files/incomplete-downloads:/incomplete-downloads:z
+      - /mnt/shared/apps/docker/qbittorrent/config:/config
+    ports:
+      - 6881:6881
+      - 6881:6881/udp
+      - 8085:8085
+    restart: 'unless-stopped'

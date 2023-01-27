@@ -1,0 +1,17 @@
+version: '3.5'
+services:
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=007
+      - TZ=Europe/Zurich
+    volumes:
+      - /var/home/core/apps/docker/sonarr/config:/config:Z
+      - /var/home/core/apps/files/downloads:/downloads:z
+      - /mnt/shared/apps/files/series:/series
+    ports:
+      - 8989:8989
+    restart: 'unless-stopped'

@@ -1,0 +1,22 @@
+---
+version: "3"
+
+networks:
+  hass:
+    name: hass
+    driver: host
+
+services:
+  homeassistant:
+    image: docker.io/homeassistant/home-assistant:latest
+    container_name: hass
+    networks: hass
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Zurich
+    volumes:
+      - /var/mnt/shared/apps/docker/homeassistant/config:/config
+    ports:
+      - 8123:8123
+    restart: unless-stopped
